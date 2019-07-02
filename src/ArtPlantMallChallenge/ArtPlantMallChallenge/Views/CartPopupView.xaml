@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="ArtPlantMallChallenge.Views.CartPopupView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="CartTitleStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{StaticResource FontSize30}" />
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="18, 0, 0, 0" />
+            </Style>
+            
+            <Style x:Key="ArrowTextStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{StaticResource FontSize48}" />
+                <Setter Property="TextColor" Value="{StaticResource LightGreenColor}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentView.Resources>
+  <ContentView.Content>
+        <Grid
+            RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <pancakeview:PancakeView
+                Grid.Row="0"
+                BackgroundColor="{StaticResource GreenColor}"
+                CornerRadius="24, 24, 0, 0"
+                VerticalOptions="Start">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <!-- CART TITLE -->
+                    <Label 
+                        Grid.Column="0"
+                        Text="Cart"
+                        Style="{StaticResource CartTitleStyle}"/>
+                    <CollectionView 
+                        Grid.Column="1"/>
+                    <Grid
+                        Grid.Column="2">
+                        <!-- EXPAND BUTTON -->
+                        <pancakeview:PancakeView
+                            x:Name="ExpandButton"
+                            CornerRadius="24, 24, 0, 0"
+                            BackgroundColor="{StaticResource DarkGreenColor}"
+                            WidthRequest="36"
+                            Margin="0, 18, 36, 0">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Collapsed">
+                                        <VisualState.Setters>
+                                            <Setter Property="IsVisible" Value="True" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Expanded">
+                                        <VisualState.Setters>
+                                            <Setter Property="IsVisible" Value="False" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Label 
+                                Text="↑"
+                                Style="{StaticResource ArrowTextStyle}"/>
+                            <pancakeview:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    Tapped="OnExpandTapped"/>
+                            </pancakeview:PancakeView.GestureRecognizers>
+                        </pancakeview:PancakeView>
+                        <!-- COLLAPSE BUTTON -->
+                        <pancakeview:PancakeView
+                            x:Name="CollapseButton"
+                            CornerRadius="0, 0, 24, 24"
+                            BackgroundColor="{StaticResource DarkGreenColor}"
+                            WidthRequest="36"
+                            Margin="0, 0, 36, 18"
+                            IsVisible="False">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Collapsed">
+                                        <VisualState.Setters>
+                                            <Setter Property="IsVisible" Value="False" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Expanded">
+                                        <VisualState.Setters>
+                                            <Setter Property="IsVisible" Value="Visible" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Label 
+                                Text="↓"
+                                Style="{StaticResource ArrowTextStyle}"/>
+                            <pancakeview:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    Tapped="OnCollapseTapped"/>
+                            </pancakeview:PancakeView.GestureRecognizers>
+                        </pancakeview:PancakeView>
+                    </Grid>
+                </Grid>
+            </pancakeview:PancakeView>
+            <Grid
+                Grid.Row="1"
+                BackgroundColor="{StaticResource GreenColor}">
+                
+            </Grid>
+        </Grid>
+  </ContentView.Content>
+</ContentView>
