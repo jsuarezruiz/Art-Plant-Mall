@@ -41,6 +41,8 @@
                     Grid.Row="1"
                     ItemsSource="{Binding Plants}"
                     ItemTemplate="{StaticResource PlantItemTemplate}"
+                    SelectedItem="{Binding SelectedPlant, Mode=TwoWay}"
+                    SelectionChangedCommand="{Binding PlantDetailCommand}"
                     Margin="12, 0">
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout
