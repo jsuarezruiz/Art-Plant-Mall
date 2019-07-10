@@ -5,7 +5,8 @@ namespace ArtPlantMallChallenge.Views
 {
     public partial class ArtPlantMallView : ContentPage
 	{
-        const uint AnimationDuration = 500;
+        const uint ExpandAnimationDuration = 500;
+        const uint CollapseAnimationDuration = 250;
 
         double _pageHeight;
 
@@ -40,12 +41,12 @@ namespace ArtPlantMallChallenge.Views
         private void OnExpand()
         {
             var height = _pageHeight - CartPopup.PageHeader;
-            CartPopup.TranslateTo(0, Height - height , AnimationDuration, Easing.SinInOut);
+            CartPopup.TranslateTo(0, Height - height , ExpandAnimationDuration, Easing.SinInOut);
         }
 
         private void OnCollapse()
         {
-            CartPopup.TranslateTo(0, _pageHeight - CartPopup.PageHeader, AnimationDuration, Easing.SinInOut);
+            CartPopup.TranslateTo(0, _pageHeight - CartPopup.PageHeader, CollapseAnimationDuration, Easing.SinInOut);
         }
     }
 }

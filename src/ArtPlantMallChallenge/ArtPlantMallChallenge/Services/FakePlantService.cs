@@ -16,6 +16,7 @@ namespace ArtPlantMallChallenge.Services
                 return _instance;
             }
         }
+
         public List<Plant> GetPlants()
         {
             return new List<Plant>

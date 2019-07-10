@@ -31,6 +31,7 @@ namespace ArtPlantMallChallenge.Views
 
         private void GoToState(string visualState)
         {
+            VisualStateManager.GoToState(SummaryBasket, visualState);
             VisualStateManager.GoToState(ExpandButton, visualState);
             VisualStateManager.GoToState(CollapseButton, visualState);
         }

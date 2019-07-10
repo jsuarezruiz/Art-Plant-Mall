@@ -10,6 +10,7 @@
         <ResourceDictionary>
 
             <Style x:Key="TitleStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource Futura}" />
                 <Setter Property="FontSize" Value="{StaticResource FontSize30}" />
                 <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
                 <Setter Property="Margin" Value="18, 24, 0, 0" />

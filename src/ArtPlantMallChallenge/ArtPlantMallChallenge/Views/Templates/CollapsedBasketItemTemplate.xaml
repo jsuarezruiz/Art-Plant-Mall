@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="ArtPlantMallChallenge.Views.Templates.CollapsedBasketItemTemplate">
+    <ContentView.Content>
+        <pancakeview:PancakeView 
+            CornerRadius="24"
+            HeightRequest="30"
+            WidthRequest="30"
+            VerticalOptions="Center"
+            Margin="18, 0, 0, 0">
+            <Image 
+                Aspect="AspectFill"
+                Source="{Binding ProductImage}"/>
+        </pancakeview:PancakeView>
+    </ContentView.Content>
+</ContentView>
