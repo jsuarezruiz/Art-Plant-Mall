@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="ArtPlantMall.Views.Templates.BasketDeliveryItemTemplate">
+    <ContentView.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="DeliveryTextStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource Futura}" />
+                <Setter Property="FontSize" Value="{StaticResource FontSize16}" />
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="6, 0" />
+            </Style>
+
+            <Style x:Key="DeliveryDescriptionTextStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource Futura}" />
+                <Setter Property="FontSize" Value="{StaticResource FontSize12}" />
+                <Setter Property="TextColor" Value="{StaticResource LightGreenColor}" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="Margin" Value="6, 2" />
+            </Style>
+
+            <Style x:Key="UnitPriceStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource Futura}" />
+                <Setter Property="FontSize" Value="{StaticResource FontSize14}" />
+                <Setter Property="TextColor" Value="{StaticResource LightGreenColor}" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="Margin" Value="6, 24, 24, 0" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid 
+            HeightRequest="100"
+            ColumnSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="90" />
+            </Grid.ColumnDefinitions>
+            <pancakeview:PancakeView
+                Grid.Column="0"
+                CornerRadius="36"
+                BackgroundColor="{StaticResource DarkGreenColor}"
+                VerticalOptions="Start"
+                HeightRequest="40"
+                WidthRequest="40"
+                Margin="24, 6, 24, 0">
+                <Image 
+                    Aspect="AspectFit"
+                    Source="delivery.png"/>
+            </pancakeview:PancakeView>
+            <StackLayout
+                Grid.Column="1"
+                Margin="0, 12, 0, 0">
+                <Label  
+                    Text="Delivery"
+                    Style="{StaticResource DeliveryTextStyle}"/>
+                <Label 
+                    Text="Free Distribution for More than 50 Dollars"
+                    Style="{StaticResource DeliveryDescriptionTextStyle}"/>
+                <Grid>
+                    <Grid
+                        HeightRequest="2"
+                        BackgroundColor="{StaticResource DarkGreenColor}"
+                        Margin="6, 0"/>
+                    <Grid
+                        HeightRequest="2"
+                        BackgroundColor="{StaticResource LightGreenColor}"
+                        Margin="6, 0, 36, 0"/>
+                </Grid>
+            </StackLayout>
+            <Label 
+                Grid.Column="2"
+                Text="{Binding UnitPrice, StringFormat='{0:C0}'}"
+                Style="{StaticResource UnitPriceStyle}"/>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

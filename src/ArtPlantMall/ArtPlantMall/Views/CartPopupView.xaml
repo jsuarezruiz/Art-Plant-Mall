@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:templates="clr-namespace:ArtPlantMall.Views.Templates"
+             x:Class="ArtPlantMall.Views.CartPopupView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="CartTextStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource Futura}" />
+                <Setter Property="FontSize" Value="28" />
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="24, 0, 12, 0" />
+            </Style>
+
+            <Style x:Key="TotalTextStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource Futura}" />
+                <Setter Property="FontSize" Value="{StaticResource FontSize20}" />
+                <Setter Property="TextColor" Value="{StaticResource LightGreenColor}" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="24" />
+            </Style>
+
+            <Style x:Key="TotalPriceTextStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource Futura}" />
+                <Setter Property="FontSize" Value="{StaticResource FontSize26}" />
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="24" />
+            </Style>
+
+            <Style x:Key="BuyNowStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource FuturaHeavy}" />
+                <Setter Property="FontSize" Value="{StaticResource FontSize20}" />
+                <Setter Property="TextColor" Value="{StaticResource GreenColor}" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="24, 0" />
+            </Style>
+
+            <Style x:Key="ArrowTextStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource Futura}" />
+                <Setter Property="FontSize" Value="{StaticResource FontSize48}" />
+                <Setter Property="TextColor" Value="{StaticResource LightGreenColor}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0, -10, 0, 0" />
+            </Style>
+
+            <DataTemplate x:Key="CollapsedBasketItemTemplate">
+                <templates:CollapsedBasketItemTemplate />
+            </DataTemplate>
+
+            <DataTemplate x:Key="ExpandedBasketItemTemplate">
+                <ViewCell>
+                    <templates:ExpandedBasketItemTemplate />
+                </ViewCell>
+            </DataTemplate>
+
+            <DataTemplate x:Key="BasketDeliveryItemTemplate">
+                <ViewCell>
+                    <templates:BasketDeliveryItemTemplate />
+                </ViewCell>
+            </DataTemplate>
+
+            <templates:BasketItemDataTemplateSelector
+                x:Key="BasketItemDataTemplateSelector"
+                PlantTemplate="{StaticResource ExpandedBasketItemTemplate}"
+                DeliveryTemplate="{StaticResource BasketDeliveryItemTemplate}" />
+
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid              
+            RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <pancake:PancakeView
+                    Grid.Row="0"
+                    BackgroundColor="{StaticResource GreenColor}"
+                    CornerRadius="36, 36, 0, 0"
+                    VerticalOptions="Start">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label 
+                        Grid.Column="0"
+                        Text="Cart"
+                        Style="{StaticResource CartTextStyle}"/>
+                    <!-- SUMMARY BASKET ITEMS -->
+                    <CollectionView 
+                        x:Name="BasketSummary"
+                        Grid.Column="1"
+                        ItemsSource="{Binding Basket}"
+                        ItemTemplate="{StaticResource CollapsedBasketItemTemplate}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Expanded">
+                                    <VisualState.Setters>
+                                        <Setter Property="IsVisible" Value="False" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Collapsed">
+                                    <VisualState.Setters>
+                                        <Setter Property="IsVisible" Value="True" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout
+                                Orientation="Horizontal"/>
+                        </CollectionView.ItemsLayout>
+                    </CollectionView>
+                    <Grid
+                        Grid.Column="2">
+                        <!-- EXPAND BUTTON -->
+                        <pancake:PancakeView
+                            x:Name="ExpandButton"
+                            CornerRadius="24, 24, 0, 0"
+                            BackgroundColor="{StaticResource DarkGreenColor}"
+                            WidthRequest="38"
+                            HeightRequest="80"
+                            Margin="0, 18, 48, 0">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Expanded">
+                                        <VisualState.Setters>
+                                            <Setter Property="IsVisible" Value="False" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Collapsed">
+                                        <VisualState.Setters>
+                                            <Setter Property="IsVisible" Value="True" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Label 
+                                Text="↑"
+                                Style="{StaticResource ArrowTextStyle}"/>
+                            <pancake:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    Tapped="ExpandTapped" />
+                            </pancake:PancakeView.GestureRecognizers>
+                        </pancake:PancakeView>
+                        <!-- COLLAPSE BUTTON -->
+                        <pancake:PancakeView
+                            x:Name="CollapseButton"
+                            CornerRadius="0, 0, 24, 24"
+                            BackgroundColor="{StaticResource DarkGreenColor}"
+                            WidthRequest="38"
+                            HeightRequest="80"
+                            Margin="0, 0, 48, 18"
+                            IsVisible="False">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Expanded">
+                                        <VisualState.Setters>
+                                            <Setter Property="IsVisible" Value="True" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Collapsed">
+                                        <VisualState.Setters>
+                                            <Setter Property="IsVisible" Value="False" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Label 
+                                Text="↓"
+                                Style="{StaticResource ArrowTextStyle}"/>
+                            <pancake:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer                                  
+                                    Tapped="CollapseTapped" />
+                            </pancake:PancakeView.GestureRecognizers>
+                        </pancake:PancakeView>
+                    </Grid>
+                </Grid>
+            </pancake:PancakeView>
+            <Grid
+                Grid.Row="1"
+                BackgroundColor="{StaticResource GreenColor}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="250" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <!-- BASKET ITEMS -->
+                <ListView 
+                    Grid.Row="0"
+                    ItemsSource="{Binding Basket}"
+                    ItemTemplate="{StaticResource BasketItemDataTemplateSelector}"
+                    HasUnevenRows="True"
+                    SeparatorVisibility="None"
+                    SelectionMode="None"
+                    Margin="0, 6"/>
+                <!-- TOTAL -->
+                <Grid
+                    Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Label 
+                        Grid.Column="0"
+                        Text="Total:"
+                        Style="{StaticResource TotalTextStyle}"/>
+                    <Label 
+                        Grid.Column="1"
+                        Text="{Binding Total, StringFormat='{0:C0}'}"
+                        Style="{StaticResource TotalPriceTextStyle}"/>
+                </Grid>
+                <!-- BUY NOW BUTTON -->
+                <pancake:PancakeView
+                    Grid.Row="2"
+                    HeightRequest="48"
+                    CornerRadius="24, 0, 24, 0"
+                    BackgroundColor="{StaticResource WhiteColor}"
+                    Margin="24, 0, 0, 0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Label 
+                            Grid.Column="1"
+                            Text="Buy now"
+                            Style="{StaticResource BuyNowStyle}"/>
+                        <Label 
+                            Grid.Column="2"
+                            Text=">"
+                            Style="{StaticResource BuyNowStyle}"/>
+                    </Grid>
+                </pancake:PancakeView>
+            </Grid>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="ArtPlantMall.Controls.NumericUpDown">
+    <ContentView.Resources>
+        <ResourceDictionary>
+
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource FuturaHeavy}" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0, 0" />
+            </Style>
+            
+        </ResourceDictionary>
+    </ContentView.Resources>
+  <ContentView.Content>
+        <pancakeview:PancakeView
+            HeightRequest="24"
+            CornerRadius="24"
+            BorderThickness="1"
+            BackgroundColor="White"
+            BorderColor="Gray">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label 
+                    x:Name="MinusButton"
+                    Grid.Column="0"
+                    Text="-"
+                    Margin="12, 0, 0, 0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer                                  
+                            Tapped="MinusTapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label 
+                    x:Name="ValueText"
+                    Grid.Column="1" />
+                <Label 
+                    x:Name="PlusButton"
+                    Grid.Column="2"
+                    Text="+"
+                    Margin="0, 0, 12, 0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer                                  
+                            Tapped="PlusTapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+        </pancakeview:PancakeView>
+    </ContentView.Content>
+</ContentView>

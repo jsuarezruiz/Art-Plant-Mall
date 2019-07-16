@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             x:Class="ArtPlantMall.Views.Templates.CollapsedBasketItemTemplate">
+  <ContentView.Content>
+        <Grid
+            HeightRequest="36"
+            WidthRequest="36"
+            VerticalOptions="Center"
+            Margin="0, 0, 20, 0">
+            <ffimageloading:CachedImage
+                Aspect="AspectFit"
+                Source="{Binding ProductImage}">
+                <ffimageloading:CachedImage.Transformations>
+                    <transformations:CircleTransformation />
+                </ffimageloading:CachedImage.Transformations>
+            </ffimageloading:CachedImage>
+        </Grid>
+  </ContentView.Content>
+</ContentView>

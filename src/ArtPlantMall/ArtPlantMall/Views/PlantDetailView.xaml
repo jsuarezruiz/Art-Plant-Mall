@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:controls="clr-namespace:ArtPlantMall.Controls"
+             x:Class="ArtPlantMall.Views.PlantDetailView">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+
+      <Style x:Key="PlantNameStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource Futura}" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontSize" Value="32" />
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="Margin" Value="24, 24, 0, 12" />
+      </Style>
+
+      <Style TargetType="controls:NumericUpDown">
+        <Setter Property="WidthRequest" Value="80" />
+        <Setter Property="Margin" Value="24, 2" />
+      </Style>
+
+      <Style x:Key="PlantPriceStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource Futura}" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontSize" Value="28" />
+        <Setter Property="TextColor" Value="{StaticResource GreenColor}" />
+        <Setter Property="HorizontalOptions" Value="End" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="Margin" Value="48, 0" />
+      </Style>
+
+      <Style x:Key="PlantDescriptionTitleStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource Futura}" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="Margin" Value="24, 12, 0, 0" />
+      </Style>
+
+      <Style x:Key="PlantDescriptionStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource FuturaMedium}" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="TextColor" Value="{StaticResource SecondaryTextColor}" />
+        <Setter Property="Margin" Value="24, 12, 24, 0" />
+      </Style>
+
+      <Style x:Key="BuyNowStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource FuturaHeavy}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize20}" />
+        <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="Margin" Value="24, 0" />
+      </Style>
+
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ContentPage.Content>
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="300" />
+        <RowDefinition Height="40" />
+        <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
+      <forms:CachedImage
+          x:Name="HeaderView"
+          Grid.Row="0"
+          Grid.RowSpan="2"
+          Aspect="AspectFill"
+          Source="{Binding Plant.Image}"
+          sharedTransitions:Transition.Tag="{Binding Plant.Id}"/>
+      <controls:ParallaxControl
+          x:Name="Parallax"
+          Grid.Row="0"
+          Grid.RowSpan="3">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="300" />
+            <RowDefinition />
+          </Grid.RowDefinitions>
+          <pancakeview:PancakeView
+              Grid.Row="1"
+              CornerRadius="24, 24, 0, 0"
+              BackgroundColor="{StaticResource WhiteColor}"
+              Margin="0, 20, 0, 0">
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <!-- PLANT NAME -->
+              <Label
+                  Grid.Row="0"
+                  Text="{Binding Plant.Name}"
+                  Style="{StaticResource PlantNameStyle}"/>
+              <!-- QUANTITY -->
+              <Grid
+                  Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" />
+                  <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <controls:NumericUpDown
+                    Grid.Row="0"
+                    Minimum="1"
+                    Maximum="10"/>
+                <Label
+                    Grid.Column="1"
+                    Text="{Binding Plant.Price, StringFormat='{0:C0}'}"
+                    Style="{StaticResource PlantPriceStyle}"/>
+              </Grid>
+              <!-- ABOUT -->
+              <Label
+                  Grid.Row="2"
+                  Text="About this plant"
+                  Style="{StaticResource PlantDescriptionTitleStyle}"/>
+              <!-- DESCRIPTION -->
+              <Label
+                  Grid.Row="3"
+                  Text="{Binding Plant.Description}"
+                  Style="{StaticResource PlantDescriptionStyle}"/>
+              <Grid
+                  Grid.Row="4"
+                  Margin="0, 12">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="80"/>
+                  <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <!-- FAVOURITE -->
+                <controls:ToggleButton
+                    Grid.Column="0"
+                    Checked="False"
+                    Animate="True"
+                    CheckedImage="nofv.png"
+                    UnCheckedImage="fav.png"
+                    Margin="18, 0, 0, 0"/>
+                <!-- BUY NOW BUTTON -->
+                <pancakeview:PancakeView
+                    Grid.Column="1"
+                    HeightRequest="48"
+                    CornerRadius="24, 0, 24, 0"
+                    BackgroundColor="{StaticResource GreenColor}"
+                    Margin="24, 0, 0, 0">
+                  <Grid>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="30" />
+                      <ColumnDefinition Width="*" />
+                      <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Column="1"
+                        Text="Buy now"
+                        Style="{StaticResource BuyNowStyle}"/>
+                    <Label
+                        Grid.Column="2"
+                        Text=">"
+                        Style="{StaticResource BuyNowStyle}"/>
+                  </Grid>
+                </pancakeview:PancakeView>
+              </Grid>
+            </Grid>
+          </pancakeview:PancakeView>
+        </Grid>
+      </controls:ParallaxControl>
+    </Grid>
+  </ContentPage.Content>
+</ContentPage>

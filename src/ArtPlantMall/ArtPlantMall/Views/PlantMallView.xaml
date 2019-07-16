@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:ArtPlantMall.Views"
+             xmlns:templates="clr-namespace:ArtPlantMall.Views.Templates"
+             x:Class="ArtPlantMall.Views.PlantMallView"
+             BackgroundColor="White"
+             x:Name="RootPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="TitleStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource Futura}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="32" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="Margin" Value="20, 20, 0, 12" />
+            </Style>
+
+            <DataTemplate x:Key="PlantDataTemplate">
+                <templates:PlantDataTemplate />
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <!-- MAIN CONTENT PANEL -->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <Label 
+                    Grid.Row="0"
+                    Text="Plant mall"
+                    Style="{StaticResource TitleStyle}"/>
+                <CollectionView
+                    Grid.Row="1"
+                    ItemsSource="{Binding Plants}"
+                    ItemTemplate="{StaticResource PlantDataTemplate}"
+                    SelectionMode="Single"
+                    SelectedItem="{Binding SelectedPlant, Mode=TwoWay}"
+                    SelectionChangedCommand="{Binding SelectCommand}" 
+                    Margin="12, 0">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout 
+                            Orientation="Vertical"
+                            Span="2" />
+                    </CollectionView.ItemsLayout>
+                </CollectionView>
+            </Grid>
+            <!-- SLIDER PANEL -->
+            <BoxView
+                x:Name="CartPopupFade"
+                Grid.Row="0"
+                Grid.RowSpan="1"
+                BackgroundColor="#AA000000"
+                IsVisible="false"
+                Opacity="0">
+            </BoxView>
+            <views:CartPopupView
+                x:Name="CartPopup" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
