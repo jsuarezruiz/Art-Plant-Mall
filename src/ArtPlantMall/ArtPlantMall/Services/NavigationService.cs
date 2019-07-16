@@ -1,7 +1,6 @@
 ﻿using ArtPlantMall.ViewModel;
 using ArtPlantMall.ViewModel.Base;
 using ArtPlantMall.Views;
-using Plugin.SharedTransitions;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -39,34 +38,32 @@ namespace ArtPlantMall.Services
             await NavigateToAsync<PlantMallViewModel>();
         }
 
-        public Task NavigateToAsync<TViewModel>() where TViewModel : ViewModelBase => InternalNavigateToAsync(typeof(TViewModel), null, null);
+        public Task NavigateToAsync<TViewModel>() where TViewModel : ViewModelBase => InternalNavigateToAsync(typeof(TViewModel), null);
 
-        public Task NavigateToAsync<TViewModel>(object parameter) where TViewModel : ViewModelBase => InternalNavigateToAsync(typeof(TViewModel), parameter, null);
+        public Task NavigateToAsync<TViewModel>(object parameter) where TViewModel : ViewModelBase => InternalNavigateToAsync(typeof(TViewModel), parameter);
 
         public async Task NavigateBackAsync()
         {
             await CurrentApplication.MainPage.Navigation.PopAsync();
         }
 
-        protected virtual async Task InternalNavigateToAsync(Type viewModelType, object parameter, int? tagGroup)
+        protected virtual async Task InternalNavigateToAsync(Type viewModelType, object parameter)
         {
             var page = CreateAndBindPage(viewModelType, parameter);
 
             if (page is PlantMallView)
             {
-                CurrentApplication.MainPage = new SharedTransitionNavigationPage(page);
+                CurrentApplication.MainPage = new NavigationPage(page);
             }
             else
             {
-                if (CurrentApplication.MainPage is SharedTransitionNavigationPage navigationPage)
+                if (CurrentApplication.MainPage is NavigationPage navigationPage)
                 {
-                    if (tagGroup != null)
-                        SharedTransitionNavigationPage.SetSelectedTagGroup(page, tagGroup.Value);
                     await navigationPage.PushAsync(page);
                 }
                 else
                 {
-                    CurrentApplication.MainPage = new SharedTransitionNavigationPage(page);
+                    CurrentApplication.MainPage = new NavigationPage(page);
                 }
             }
 

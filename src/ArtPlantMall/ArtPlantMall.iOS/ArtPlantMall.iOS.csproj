@@ -163,9 +163,6 @@
     <PackageReference Include="Xamarin.Forms.PancakeView">
       <Version>1.0.21</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Plugin.SharedTransitions">
-      <Version>1.1.0</Version>
-    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>

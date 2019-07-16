@@ -1,5 +1,4 @@
-﻿using Plugin.SharedTransitions;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace ArtPlantMall.Views
 {
@@ -15,9 +14,6 @@ namespace ArtPlantMall.Views
 		{
 			InitializeComponent ();
             NavigationPage.SetHasNavigationBar(this, false);
-
-            SharedTransitionNavigationPage.SetBackgroundAnimation(this, BackgroundAnimation.Fade);
-            SharedTransitionNavigationPage.SetSharedTransitionDuration(this, SharedTransitionDuration);
         }
 
         protected override void OnAppearing()

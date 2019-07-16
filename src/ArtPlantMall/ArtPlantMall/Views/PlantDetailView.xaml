@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
              xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:controls="clr-namespace:ArtPlantMall.Controls"
              x:Class="ArtPlantMall.Views.PlantDetailView">
@@ -69,8 +68,7 @@
           Grid.Row="0"
           Grid.RowSpan="2"
           Aspect="AspectFill"
-          Source="{Binding Plant.Image}"
-          sharedTransitions:Transition.Tag="{Binding Plant.Id}"/>
+          Source="{Binding Plant.Image}"/>
       <controls:ParallaxControl
           x:Name="Parallax"
           Grid.Row="0"

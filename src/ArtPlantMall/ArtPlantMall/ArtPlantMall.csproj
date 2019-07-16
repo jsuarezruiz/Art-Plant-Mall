@@ -15,7 +15,6 @@
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.Forms" Version="4.0.0.497661" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.0.21" />
-    <PackageReference Include="Xamarin.Plugin.SharedTransitions" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>
